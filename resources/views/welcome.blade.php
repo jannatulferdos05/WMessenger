@@ -12,22 +12,7 @@
 
 </head>
 <body>
-<h1 style="justify-content: center;
-align-items: center;
-text-align: center; 
-
-color:crimson; " >Send Messages</h1>
-
-<div style="" id="app" class="MessageForm"> 
-<!--- {{url('/sending_message')}} --->
-<form action="{{url('/sending_message')}}" method="post">
-@csrf
-
-<input type="text" class="phonenumber" name="phone" placeholder="Enter receiver phone number">
-</br>
-<input type="text" name="message" placeholder="Enter your message">
-<button type="submit">Send</button>
-</form> 
+<div id="app" class="MessageForm"> 
 </div> 
 </body>
 </html>
