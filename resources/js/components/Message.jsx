@@ -9,7 +9,8 @@ function Message() {
 
 
     const [message, setMessage] = useState("");
-    
+
+    const [status,setStatus]=useState(null);
 
     function handlePhone(event) {
         setPhone(event.target.value);
@@ -20,12 +21,16 @@ function Message() {
     }
 
     function handleSubmit(event) {
+        event.preventDefault();
         const data={phone,message};
-        fetch("http://bulksmsbd.net/api/smsapi?api_key=cQcIRLoSoBKMBwL9jIVR&type=text&number=8801516009099&senderid=8809617614158&message=TestSMS ",{
+        //http://bulksmsbd.net/api/smsapi?api_key=cQcIRLoSoBKMBwL9jIVR&type=text&number=8801516009099&senderid=8809617614158&message=TestSMS
+        fetch("/api/sendMessage",{
             method: "POST",
             body:JSON.stringify(data)
         }).then(response=>response.json())
-        .then(data=>{console.log(data); })
+        .then(data=>{
+            setStatus(data['message']);
+        })
         .catch((error)=>{console.error(error)});
     }
 
@@ -33,7 +38,8 @@ function Message() {
 
 return (
 <div>
-<h1 className="head" >Send Messages</h1>
+<h1 className="head" >Send Messages to: {phone}</h1>
+    Message: {message}
 <form onSubmit={handleSubmit} >
 
 <label>Phone: <br/>
@@ -44,10 +50,12 @@ return (
 </label>
 <br/>
 <button type="submit" >Send</button>
-</form> 
+</form>
 
-
+    {
+        status?status:"No status"
+    }
 </div>
 );
-} 
+}
 export default Message;
