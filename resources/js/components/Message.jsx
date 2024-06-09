@@ -23,7 +23,7 @@ function Message() {
         const data={phone,message};
         fetch("http://bulksmsbd.net/api/smsapi?api_key=cQcIRLoSoBKMBwL9jIVR&type=text&number=8801516009099&senderid=8809617614158&message=TestSMS ",{
             method: "POST",
-            body:JOSN.stringify(data)
+            body:JSON.stringify(data)
         }).then(response=>response.json())
         .then(data=>{console.log(data); })
         .catch((error)=>{console.error(error)});
