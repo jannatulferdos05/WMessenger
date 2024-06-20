@@ -8,7 +8,6 @@ function Message() {
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
     const [status, setStatus] = useState("");
-    
 
     function handlePhone(event) {
         setPhone(event.target.value);
@@ -33,7 +32,8 @@ function Message() {
 
 return (
 <div>
-<h1 className="head" >Send Messages</h1>
+<h1 className="head" >Send Messages to: {phone}</h1>
+    Message: {message}
 <form onSubmit={handleSubmit} >
 
 <label>Phone: <br/>
@@ -54,7 +54,10 @@ Phone : {phone}
         status?status:"No status"
     }
 
+    {
+        status?status:"No status"
+    }
 </div>
 );
-} 
+}
 export default Message;
